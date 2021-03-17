@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="service" groupId="com.example.RSAGenEncrDecr.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/service.xml</file>
+    </artifact>
+    <artifact name="callMediator" groupId="com.example.RSAGenEncrDecr.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/callMediator.xml</file>
+    </artifact>
+</artifacts>

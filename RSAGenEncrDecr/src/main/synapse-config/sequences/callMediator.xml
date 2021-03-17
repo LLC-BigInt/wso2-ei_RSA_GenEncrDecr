@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="callMediator" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <switch source="$ctx:typeExec">
+        <case regex="encrypte">
+            <class name="com.bigint.RSAKeyEncrDecr"/>
+        </case>
+        <case regex="decrypte">
+            <class name="com.bigint.RSAKeyEncrDecr"/>
+        </case>
+        <default>
+            <class name="com.bigint.RSAKeyPairGenerator"/>
+        </default>
+    </switch>
+</sequence>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/service" name="service" xmlns="http://ws.apache.org/ns/synapse">
+    <resource faultSequence="fault" methods="GET" uri-template="/generate">
+        <inSequence>
+            <property name="fpathPublic" scope="default" type="STRING" value="/opt/wso2/RSA/publicKey"/>
+            <property name="fpathPrivate" scope="default" type="STRING" value="/opt/wso2/RSA/privateKey"/>
+            <property name="sizeKeyS" scope="default" type="STRING" value="1024"/>
+            <sequence key="callMediator"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+    </resource>
+    <resource faultSequence="fault" methods="POST" uri-template="/encrypte">
+        <inSequence>
+            <property expression="json-eval($.string)" name="strExec" scope="default" type="STRING"/>
+            <property name="typeExec" scope="default" type="STRING" value="encrypte"/>
+            <property name="fpathPublic" scope="default" type="STRING" value="/opt/wso2/RSA/publicKey"/>
+            <property name="fpathPrivate" scope="default" type="STRING" value="/opt/wso2/RSA/privateKey"/>
+            <sequence key="callMediator"/>
+            <payloadFactory media-type="json">
+                <format>{"result":"$1"}</format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:result"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+    </resource>
+    <resource faultSequence="fault" methods="POST" uri-template="/decrypte">
+        <inSequence>
+            <property expression="json-eval($.string)" name="strExec" scope="default" type="STRING"/>
+            <property name="typeExec" scope="default" type="STRING" value="decrypte"/>
+            <property name="fpathPublic" scope="default" type="STRING" value="/opt/wso2/RSA/publicKey"/>
+            <property name="fpathPrivate" scope="default" type="STRING" value="/opt/wso2/RSA/privateKey"/>
+            <sequence key="callMediator"/>
+            <payloadFactory media-type="json">
+                <format>{"result":"$1"}</format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:result"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+    </resource>
+</api>
